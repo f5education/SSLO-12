@@ -1,6 +1,6 @@
 # copy ca-cert files to internal client
 mkdir /home/student/Downloads/certs
-curl --silent https://raw.githubusercontent.com/f5education/$COURSE_ID/main/certs/RootCertAndKey.pfx --output Downloads/certs/ca.f5trn.com.pfx
+curl --silent https://raw.githubusercontent.com/f5education/$COURSE_ID/main/certs/ca-f5trn-com.pfx --output Downloads/certs/ca-f5trn-com.pfx
 curl --silent https://raw.githubusercontent.com/f5education/$COURSE_ID/main/certs/ca-f5trn-com.crt --output Downloads/certs/ca-f5trn-com.crt
 curl --silent https://raw.githubusercontent.com/f5education/$COURSE_ID/main/certs/ca-f5trn-com.key --output Downloads/certs/ca-f5trn-com.key
 
