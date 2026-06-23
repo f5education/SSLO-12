@@ -11,19 +11,37 @@ sudo update-ca-certificates
 #install certutil libnss3-tools
 sudo apt update && sudo apt install libnss3-tools -y
 
-#install ca-cert into browsers
+#install ca-cert into Chrome and Edge browsers
 certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n "ca-f5trn-com" -i Downloads/certs/ca-f5trn-com.crt
+
+#T his instructs Firefox to trust certificates located in the Ubuntu System Trust Store
+#Option #1 for Firefox
+#sudo mkdir -p /etc/firefox/policies
+#echo '{"policies": {"ImportEnterpriseRoots": true}}' | sudo tee /etc/firefox/policies/policies.json
+
+# Optoion #2 for Firefox
 #export FF_PROFILE=$(ls -d ~/snap/firefox/common/.mozilla/firefox/*.default)
 #certutil -A -n "ca-f5trn-com" -t "TC,," -i Downloads/certs/ca-f5trn-com.crt -d sql:$FF_PROFILE
 
-#This instructs Firefox to trust certificates located in the Ubuntu System Trust Store
-sudo mkdir -p /etc/firefox/policies
-echo '{"policies": {"ImportEnterpriseRoots": true}}' | sudo tee /etc/firefox/policies/policies.json
+# Option #3 for Firefox
+sudo mkdir -p /etc/firefox/policies/certificates
+sudo cp /home/student/Downloads/certs/ca-f5trn-com.crt /etc/firefox/policies/certificates/
+sudo bash -c 'cat <<EOF > /etc/firefox/policies/policies.json
+{
+  "policies": {
+    "Certificates": {
+      "Install": [
+        "/etc/firefox/policies/certificates/custom-ca.crt"
+      ]
+    }
+  }
+}
+EOF'
 
-# Backup the existing configuration
+# Backup the existing netplan configuration
 sudo cp /etc/netplan/01-config.yaml /etc/netplan/01-config.yaml.bak
 
-# Replace the contents with new configuration (update below as needed
+# Replace the netplan contents with new configuration
 cat <<EOF | sudo tee /etc/netplan/01-config.yaml
 network:
   version: 2
