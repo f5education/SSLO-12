@@ -31,7 +31,7 @@ sudo bash -c 'cat <<EOF > /etc/firefox/policies/policies.json
   "policies": {
     "Certificates": {
       "Install": [
-        "/etc/firefox/policies/certificates/custom-ca.crt"
+        "/etc/firefox/policies/certificates/ca-f5trn-com.crt"
       ]
     }
   }
