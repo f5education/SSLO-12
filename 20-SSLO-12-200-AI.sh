@@ -8,8 +8,8 @@ curl --silent https://raw.githubusercontent.com/f5education/$COURSE_ID/main/$UCS
 sudo scp /tmp/$UCS 192.168.1.31:/var/local/ucs
 
 # Load UCS into BIGIP01
-sudo ssh 192.168.1.31 tmsh load sys ucs $UCS no-license
-sleep 15
+#sudo ssh 192.168.1.31 tmsh load sys ucs $UCS no-license
+#sleep 15
 
 ### WE MAY NEED TO SAVE THIS FOR THE SECOND OF TWO LABS (TMSH)
 # load/merge archive to bigip1 and pause
