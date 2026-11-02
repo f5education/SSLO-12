@@ -1,4 +1,4 @@
-UCS=sslo1_policy.ucs
+UCS=sslo1_policy_12.ucs
 SCF=swg_profile.scf
 
 # copy archive files from GitHub to bigip1
